@@ -38,7 +38,15 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: 'pip'
+          update-environment: false
           cache-dependency-path: 'requirements.txt'
+      - name: Print again
+        run: |
+          # Get the container ID
+          container_id=$(cat /proc/self/cgroup | grep "cpu" | sed 's/^.*\///' | tail -n 1)
+          echo "Container ID used: $container_id"
+          # Print the environment variable
+          echo "PRINT PIP_ROOT_USER_ACTION: $PIP_ROOT_USER_ACTION"
   test2:
     runs-on: ubuntu-latest
     strategy:

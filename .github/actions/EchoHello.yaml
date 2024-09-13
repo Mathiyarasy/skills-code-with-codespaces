@@ -1,0 +1,9 @@
+name: 'Echo Hello'
+description: 'A custom action that echoes hello'
+inputs:
+  rts:
+    description: 'An environment variable to be echoed'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'

@@ -5,7 +5,7 @@ on:
 jobs:
   test1:
     runs-on: ubuntu-latest
-    container: ubuntu: 22.04
+    container: ubuntu:22.04
     strategy:
       matrix:
         python: [3.12.6]

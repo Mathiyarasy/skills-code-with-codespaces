@@ -13,4 +13,4 @@ jobs:
     - name: Use Echo Hello Action
       uses: ./.github/actions/echo-hello
       with:
-        rts: ${{ secrets.RTS }}
+        rts: ${{ "Mathi" }}

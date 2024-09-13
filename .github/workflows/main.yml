@@ -39,4 +39,4 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
           cache: 'pip'
-          cache-dependency-path: 'requirements.txt
+          cache-dependency-path: 'requirements.txt'

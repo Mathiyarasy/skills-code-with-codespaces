@@ -11,6 +11,8 @@ jobs:
         python: [3.12.6]
     steps:
       - uses: actions/checkout@v4
+      - name: List environment variables
+        run: printenv
       - name: Install Docker
         run: |
           apt-get update

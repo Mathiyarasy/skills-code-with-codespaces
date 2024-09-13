@@ -6,6 +6,9 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     container: ubuntu:22.04
+    env:
+     PIP_ROOT_USER_ACTION: ignore
+
     strategy:
       matrix:
         python: [3.12.6]
@@ -13,6 +16,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: List environment variables
         run: printenv
+      - name: Print Container ID and Environment Variable
+        run: |
+          # Get the container ID
+          container_id=$(cat /proc/self/cgroup | grep "cpu" | sed 's/^.*\///' | tail -n 1)
+          echo "Container ID used: $container_id"
+          # Print the environment variable
+          echo "PRINT PIP_ROOT_USER_ACTION: $PIP_ROOT_USER_ACTION"
       - name: Install Docker
         run: |
           apt-get update
@@ -23,10 +33,6 @@ jobs:
           apt-get install -y lsb-release
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
-      - name: Show Container ID and Environment Variable
-        run: |
-          echo "Container ID used: ${{ env.container_id }}"
-          /usr/bin/docker exec ${{ env.container_id }} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
       - name: Setup Python
         uses: actions/setup-python@v5
         with:

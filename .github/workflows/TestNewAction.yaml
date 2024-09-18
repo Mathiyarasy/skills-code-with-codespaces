@@ -5,6 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+     image: python:3.9
     env:
         rts: max
     steps:
